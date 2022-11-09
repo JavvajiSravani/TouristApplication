@@ -1,0 +1,105 @@
+&nbsp;
+<div class="container">
+  <div class="card-header">
+    <h3 class="text-center"><b> Registration form</b></h3>
+  </div>
+  <div class="card-body">
+    <form (ngSubmit)="onSubmit()" #touristForm="ngForm">
+      <div class="form-group">
+        <label for="id" style="color: black"><b>Id</b></label>
+        <input type="text" [(ngModel)]="tourist.id" class="form-control" name="id " 
+            placeholder="Enter your id" required
+          pattern="[0-9]*" maxlength="4" #id="ngModel" />
+        <div *ngIf="id.invalid && (id.dirty||id.touched)" class="text-danger">
+          <div *ngIf="id.errors?.['required']">
+            Id is required
+          </div>
+          <div *ngIf="id.errors?.['pattern']">
+            Id can only have numbers
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="firstName" style="color: black"><b>FirstName</b></label>
+        <input type="text" [(ngModel)]="tourist.firstName" class="form-control" name="firstName"
+          placeholder="Enter your FirstName" required pattern="[a-zA-Z][a-zA-Z]+" maxlength="15" #firstname="ngModel" />
+        <div *ngIf="firstname.invalid && (firstname.dirty||firstname.touched)" class="text-danger">
+          <div *ngIf="firstname.errors?.['required']">
+            Firstname is required
+          </div>
+          <div *ngIf="firstname.errors?.['pattern']">
+            Firstname can have only alphabets
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="lastName" style="color:black"><b>LastName</b></label>
+        <input type="text" [(ngModel)]="tourist.lastName" class="form-control" name="lastName"
+          placeholder="Enter your LastName" required pattern="[a-zA-Z][a-zA-Z]+" maxlength="12" #lastname="ngModel">
+        <div *ngIf="lastname.invalid && (lastname.dirty||lastname.touched)" class="text-danger">
+          <div *ngIf="lastname.errors?.['required']">
+            lastname is required
+          </div>
+          <div *ngIf="lastname.errors?.['pattern']">
+            lastname can have only alphabets
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label style="color: black"><b>Gender :</b></label>&nbsp;
+        <input type="radio" name="gender" value="MALE" [(ngModel)]="tourist.gender" required>
+        <label>MALE</label>&nbsp;
+        <input type="radio" name="gender" value="FEMALE" #radio="ngModel" [(ngModel)]="tourist.gender" required>
+        <label>FEMALE</label>
+
+      </div>
+
+      <div class="form-group">
+        <label for="age" style="color: black"><b>Age</b></label>
+        <input type="text" [(ngModel)]="tourist.age" class="form-control" name="age" placeholder="Enter your age"
+          required pattern="[0-9]{1,2}" maxlength="2" #age="ngModel" (keyup)="validateAge($event)">
+        <div *ngIf="age.invalid && (age.dirty||age.touched)" class="text-danger">
+          <div *ngIf="age.errors?.['required']">
+            Age is required
+          </div>
+          <div *ngIf="age.errors?.['pattern']">
+            Age can have only numbers and two digits
+          </div>
+          <div *ngIf="age.errors?.['max']">
+            Age cannot be more than 90
+          </div>
+        </div>
+        <div class="text-danger" *ngIf="invalidAge != ''">{{invalidAge}}</div>
+      </div>
+      <div class="form-group">
+        <label for="fromPlace" style="color: black"><b>FromPlace</b></label>
+        <input type="text" [(ngModel)]="tourist.fromPlace" class="form-control" name="fromPlace"
+          placeholder="Enter fromPlace" required pattern="[a-zA-Z][a-zA-Z]+" #place="ngModel" />
+        <div *ngIf="place.invalid && (place.dirty||place.touched)" class="text-danger">
+          <div *ngIf="place.errors?.['required']">
+            Fromplace is required
+          </div>
+          <div *ngIf="place.errors?.['pattern']">
+            From place can have only character
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="noOfDays" style="color: black"><b>NoOfDays</b></label>
+        <input type="number" [(ngModel)]="tourist.noOfDays" class="form-control" name="noOfDays"
+          placeholder="Enter noOfDays" required required pattern="[0-9]*" #numberofdays="ngModel">
+        <div *ngIf="numberofdays.invalid && (numberofdays.dirty||numberofdays.touched)" class="text-danger">
+          <div *ngIf="numberofdays.errors?.['required']">
+            Number of days is required
+          </div>
+          <div *ngIf="numberofdays.errors?.['pattern']">
+            Number of days can have only have numbers
+          </div>
+        </div>
+      </div>
+      <button type="submit" [disabled]="!touristForm.form.valid" class="btn btn-info">
+        Submit
+      </button>
+    </form>
+  </div>
+</div>

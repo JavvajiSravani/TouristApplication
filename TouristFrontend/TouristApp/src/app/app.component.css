@@ -1,0 +1,20 @@
+.container {
+    min-height: 100vh;
+    background-size: cover;
+}
+
+.def-bg {
+    background-image: url(../assets/images/image-3.png);
+}
+
+.home-bg {
+    background-image: url(../assets/images/image-5.jpg);
+}
+
+.view {
+    background-image: url(../assets/images/image4.jpg);
+}
+
+.register {
+    background-image: url(../assets/images/image.jpg);
+}
